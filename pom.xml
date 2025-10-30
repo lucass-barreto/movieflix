@@ -82,7 +82,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
@@ -95,9 +95,8 @@
 					<annotationProcessorPaths>
 
 						<path>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>1.5.5.Final</version>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
 						</path>
 
 					</annotationProcessorPaths>
