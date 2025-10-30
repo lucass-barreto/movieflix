@@ -14,29 +14,28 @@ import java.util.Optional;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
-    public CategoryMapper categoryMapper;
 
-    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
+        ;
     }
 
     public List<CategoryResponse> findAll() {
         List<Category> categories = categoryRepository.findAll();
         return categories.stream()
-                .map(categoryMapper::toResponse)
+                .map(CategoryMapper::toCategoryResponse)
                 .toList();
     }
 
     public CategoryResponse saveCategory(CategoryRequest request) {
-        Category category = categoryMapper.toModel(request);
+        Category category = CategoryMapper.toModel(request);
         Category categorySaved = categoryRepository.save(category);
-        return categoryMapper.toResponse(categorySaved);
+        return CategoryMapper.toCategoryResponse(categorySaved);
     }
 
     public Optional<CategoryResponse> findById(Long id) {
         return categoryRepository.findById(id)
-                .map(categoryMapper::toResponse);
+                .map(CategoryMapper::toCategoryResponse);
     }
 
     public boolean deleteById(Long id) {
